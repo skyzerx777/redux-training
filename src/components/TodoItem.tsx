@@ -20,11 +20,12 @@ export default function TodoItem({
 			todos.map((item: TodosType) => {
 				if (item.id === id) {
 					return {
-						id: item.id,
-						text: item.text,
+						id,
+						text,
 						completed: !item.completed,
 					};
-				} else return item;
+				}
+				return item;
 			})
 		);
 	};
