@@ -1,3 +1,3 @@
 export default function AddTodoButton() {
-	return <div>AddTodoButton</div>;
+	return <button className='border-2 border-black px-4'>Add</button>;
 }

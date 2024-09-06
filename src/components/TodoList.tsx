@@ -1,3 +1,9 @@
+import TodoItem from './TodoItem';
+
 export default function TodoList() {
-	return <div>TodoList</div>;
+	return (
+		<div className='flex justify-center'>
+			<TodoItem />
+		</div>
+	);
 }
