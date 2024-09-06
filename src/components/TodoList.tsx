@@ -1,9 +1,23 @@
+import { TodosType } from '../types/TodosType';
 import TodoItem from './TodoItem';
 
-export default function TodoList() {
+type PropsType = {
+	todos: TodosType[];
+	setTodos: React.Dispatch<React.SetStateAction<TodosType[]>>;
+};
+export default function TodoList({ todos, setTodos }: PropsType) {
 	return (
-		<div className='flex justify-center'>
-			<TodoItem />
-		</div>
+		<ul className='flex flex-col justify-center items-center'>
+			{todos.map(item => (
+				<TodoItem
+					key={item.id}
+					id={item.id}
+					text={item.text}
+					completed={item.completed}
+					todos={todos}
+					setTodos={setTodos}
+				/>
+			))}
+		</ul>
 	);
 }

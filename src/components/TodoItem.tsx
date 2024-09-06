@@ -1,9 +1,49 @@
-export default function TodoItem() {
+import { TodosType } from '../types/TodosType';
+
+type PropsType = {
+	id: string;
+	text: string;
+	completed: boolean;
+	todos: TodosType[];
+	setTodos: React.Dispatch<React.SetStateAction<TodosType[]>>;
+};
+
+export default function TodoItem({
+	id,
+	text,
+	completed,
+	todos,
+	setTodos,
+}: PropsType) {
+	const toggleTodoComplete = () => {
+		setTodos(
+			todos.map((item: TodosType) => {
+				if (item.id === id) {
+					return {
+						id: item.id,
+						text: item.text,
+						completed: !item.completed,
+					};
+				} else return item;
+			})
+		);
+	};
+
+	const deleteTodo = () => {
+		setTodos(todos.filter((item: TodosType) => item.id !== id));
+	};
+
 	return (
-		<div className='flex gap-4'>
-			<input type='checkbox' />
-			<p>text</p>
-			<span className='text-red-600'>&#215;</span>
-		</div>
+		<li className='flex gap-4'>
+			<input
+				type='checkbox'
+				checked={completed}
+				onChange={toggleTodoComplete}
+			/>
+			<p>{text}</p>
+			<span className='text-red-600 cursor-pointer' onClick={deleteTodo}>
+				&#215;
+			</span>
+		</li>
 	);
 }
